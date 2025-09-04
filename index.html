@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Entrena desde casa con la guía de Spiderboy. Rutinas, consejos y motivación para que logres tus objetivos de forma sencilla y efectiva.">
+  <meta name="keywords" content="Spiderboy, entrenamientos en casa, rutinas de ejercicio, quemar grasa, ganar músculo, fitness en casa">
+
+  <meta property="og:title" content="Spiderboy | Entrenamientos en Casa" />
+  <meta property="og:description" content="Descubre rutinas simples y efectivas para entrenar en casa con Spiderboy. Ejercicios, consejos y motivación para transformar tu cuerpo." />
+  <meta property="og:image" content="https://i.ibb.co/BKNmKX0y/78c0842dceafacf35c073e7d38b98d62.jpg" />
+  <meta property="og:url" content="" />
+  <meta property="og:type" content="website" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Spiderboy | Entrenamientos en Casa">
+  <meta name="twitter:description" content="Rutinas y consejos de Spiderboy para entrenar desde casa y alcanzar tus metas fitness.">
+  <meta name="twitter:image" content="https://i.ibb.co/BKNmKX0y/78c0842dceafacf35c073e7d38b98d62.jpg">
+  <title>Guía SpiderBoy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff; /* fondo blanco */
+    }
+
+    /* Encabezado */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: white;
+      padding: 15px 20px;
+    }
+
+    .header-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #000; /* negro exacto */
+      text-transform: uppercase; /* igual que en la app */
+      letter-spacing: -0.5px; /* más compacto como en la captura */
+    }
+
+    .icon-fire {
+      width: 26px;
+      height: 26px;
+    }
+
+    .buscador-ejercicios {
+      font-family: Arial, sans-serif;
+      margin: 20px auto;
+      max-width: 500px;
+      padding: 0 15px; /* 👈 más espacio a los lados */
+    }
+
+    .buscador-box {
+      display: flex;
+      align-items: center;
+      background: #f0f0f0;
+      border-radius: 25px;
+      padding: 10px 15px;
+    }
+
+    .buscador-box input {
+      border: none;
+      background: none;
+      outline: none;
+      flex: 1;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .buscador-box input::placeholder {
+      color: #999;
+    }
+
+    .resultados-ejercicios {
+      margin-top: 15px;
+    }
+
+    .resultado-item {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 12px;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .resultado-item:hover {
+      transform: scale(1.02);
+      background: #f9f9f9;
+    }
+
+    .resultado-texto h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .resultado-texto p {
+      margin: 3px 0 0;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .resaltado {
+      color: #007bff;
+      font-weight: bold;
+    }
+
+    .objetivo-semanal {
+      background: #fff;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      max-width: 500px;
+      margin: 20px auto;
+      font-family: Arial, sans-serif;
+    }
+
+    .objetivo-semanal h2 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #111;
+    }
+
+    .dias {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .dia {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #ddd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      color: #555;
+      transition: 0.3s;
+    }
+
+    .dia.activo {
+      border-color: #28a745;
+      background: #28a745;
+      color: #fff;
+    }
+
+    .mensaje-dia {
+      display: flex;
+      align-items: center;
+      background: #f2f2f2;
+      border-radius: 12px;
+      padding: 10px;
+    }
+
+    .mensaje-dia img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      margin-right: 12px;
+      object-fit: cover;
+    }
+
+    .mensaje-dia p {
+      margin: 0;
+      font-size: 15px;
+      color: #111;
+    }
+
+    .carrusel-contenedor {
+      max-width: 380px;
+      margin: 30px auto;
+    }
+
+    .titulo-carrusel {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #111;
+      text-align: left;
+    }
+
+    .carrusel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      min-height: 120px;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 25px 15px;
+      opacity: 0;
+      transform: translateX(100%);
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.4;
+      color: #333;
+    }
+
+    .slide.activo {
+      opacity: 1;
+      transform: translateX(0);
+      position: relative;
+    }
+
+    .indicadores {
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .punto {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin: 0 4px;
+      background: #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .punto.activo {
+      background: #007bff;
+    }
+
+    .content-page {
+      display: block;
+    }
+
+    .details-page {
+      display: none;
+      background-color: white;
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .back-arrow {
+      font-size: 30px;
+      text-decoration: none;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .contenedor {
+      width: 90%;
+      max-width: 900px;
+      margin: auto;
+      padding: 20px 0;
+    }
+
+    .consejo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 15px;
+    }
+
+    .consejo img {
+      width: 120px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-right: 20px;
+    }
+
+    .consejo p {
+      font-size: 16px;
+      font-weight: 500;
+      margin: 0;
+      color: #333;
+    }
+
+    .recordatorio {
+      text-align: center;
+      font-size: 15px;
+      margin: 30px auto;
+      max-width: 700px;
+      line-height: 1.5;
+      color: #444;
+    }
+
+    .redes {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .redes h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #111;
+    }
+
+    .redes a img {
+      width: 45px;
+      margin: 0 12px;
+      transition: transform 0.2s ease;
+    }
+
+    .redes a img:hover {
+      transform: scale(1.1);
+    }
+
+    .rutina-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .rutina-table th, .rutina-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .rutina-table th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content-page">
+    <header class="header">
+      <div class="header-title">GUÍA SPIDERBOY</div>
+      <svg class="icon-fire" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <defs>
+          <linearGradient id="flameGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FF4500"/>
+            <stop offset="70%" stop-color="#FF8C00"/>
+            <stop offset="100%" stop-color="#FFD700"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#flameGradient)" d="M12 2C10.5 5 7 8 7 13c0 3.9 3.1 7 7 7s7-3.1 7-7c0-5-3.5-8-6-11-1 2-2 3-3 3s-2-1-2-3z"/>
+      </svg>
+    </header>
+
+    <div class="buscador-ejercicios">
+      <div class="buscador-box">
+        <input type="text" id="busqueda-ejercicio" placeholder="Busca entrenamientos, planes...">
+      </div>
+      <div class="resultados-ejercicios" id="resultados-ejercicios"></div>
+    </div>
+
+    <div class="objetivo-semanal">
+      <h2>Objetivo semanal</h2>
+      <div class="dias" id="dias-semana"></div>
+      <div class="mensaje-dia" id="mensaje-dia">
+        <img src="https://images.pexels.com/photos/1229356/pexels-photo-1229356.jpeg?_gl=1*1st9myg*_ga*MTY1Njc0OTExMi4xNzU2OTU5ODI1*_ga_8JE65Q40S6*czE3NTY5NTk4MjUkbzEkZzEkdDE3NTY5NjAwMTAkajkkbDAkaDA." alt="coach">
+        <p>¡Tu entrenamiento te espera! ¡Es hora de dar el primer paso!</p>
+      </div>
+    </div>
+
+    <div class="carrusel-contenedor">
+      <h2 class="titulo-carrusel">Introducción</h2>
+      <div class="carrusel">
+        <div class="slide activo">
+          <p>¿No sabes cómo empezar a ganar masa muscular?</p>
+        </div>
+        <div class="slide">
+          <p>¿Tienes muchas dudas y no sabes cómo empezar?</p>
+        </div>
+        <div class="slide">
+          <p>
+            En esta guía te voy a compartir el conocimiento que he adquirido en más
+            de 2 años de entrenamiento, y que también tiene evidencia científica.
+          </p>
+        </div>
+        <div class="slide">
+          <p>Te enseñaré los 3 PILARES BÁSICOS PARA GANAR MÚSCULOS.</p>
+        </div>
+        <div class="slide">
+          <p>
+            Da igual si vas al gym o entrenas en casa, si sigues los 3 pilares básicos
+            ganarás más musculatura, ya que el músculo no entiende si entrenas en casa
+            o en el gym, el músculo solo entiende los estímulos.
+          </p>
+        </div>
+      </div>
+      <div class="indicadores">
+        <span class="punto activo"></span>
+        <span class="punto"></span>
+        <span class="punto"></span>
+        <span class="punto"></span>
+        <span class="punto"></span>
+      </div>
+    </div>
+
+    <div style="
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      width: 90%;
+      max-width: 400px;
+      margin: 20px auto;
+      height: 200px;
+      background: url('https://images.pexels.com/photos/1547248/pexels-photo-1547248.jpeg?_gl=1*or3sq*_ga*MTY1Njc0OTExMi4xNzU2OTU5ODI1*_ga_8JE65Q40S6*czE3NTY5NTk4MjUkbzEkZzEkdDE3NTY5NjAwMzgkajQ5JGwwJGgw') no-repeat center/cover;
+      display: flex;
+      align-items: flex-end;
+    ">
+      <div style="
+        width: 100%;
+        padding: 20px;
+        background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+        color: white;
+      ">
+        <h2 style="font-size: 20px; font-weight: bold; margin: 0;">Primer Pilar</h2>
+        <p style="font-size: 14px; margin: 5px 0 0;">- Entrenamiento</p>
+      </div>
+    </div>
+
+    <div style="
+      max-width: 600px;
+      margin: 15px auto;
+      font-size: 15px;
+      color: #222;
+      line-height: 1.6;
+      padding: 0 10px;
+    ">
+      <p>
+        Vamos a empezar con el entrenamiento, y es que si quieres ganar masa muscular,
+        tienes que entrenar de la manera correcta, y esto se resume en:
+      </p>
+      <p>
+        1. <b>La intensidad del entrenamiento:</b> Esto es muy importante, ya que cuando entrenas
+        el objetivo es desgarrar el músculo, y eso se logra mediante la intensidad del entrenamiento,
+        tienes que llegar al fallo muscular (El fallo muscular es llegar a ese punto en donde ya no puedes
+        hacer ni una repetición más, cuando tu músculo ya no es capaz de realizar otro levantamiento).
+        Así que trata de llegar al fallo muscular en al menos 2 series de tu entrenamiento.
+        Tampoco lo hagas en todos tus entrenamientos ni en todas tus series, ya que el músculo se va a
+        fatigar por la continua intensidad.
+      </p>
+      <p>
+        2. <b>Técnica correcta en los ejercicios:</b> Al momento de que tú estás realizando cualquier ejercicio,
+        tienes que poner mucha atención a la técnica que estás realizando, pregúntate lo siguiente cuando
+        estés realizando cualquier ejercicio, por ejemplo un curl de bíceps, donde el objetivo es desgarrar
+        el bíceps: ¿Siento estímulo en el bíceps? ¿O estoy sintiendo otro músculo?.
+      </p>
+      <p>
+        De esta manera tienes que preguntarte en cada ejercicio que hagas,
+        cuál es el músculo que tengo que sentir?. Si la respuesta es diferente
+        al músculo que deberías sentir, checa la técnica en tus ejercicios.
+      </p>
+    </div>
+
+    <hr style="border: none; border-top: 2px solid #ddd; margin: 30px auto; width: 80%;">
+
+    <div style="
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      width: 90%;
+      max-width: 400px;
+      margin: 20px auto;
+      height: 200px;
+      background: url('https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?_gl=1*yturuy*_ga*MTY1Njc0OTExMi4xNzU2OTU5ODI1*_ga_8JE65Q40S6*czE3NTY5NTk4MjUkbzEkZzEkdDE3NTY5NjAxMDYkajUwJGwwJGgw') no-repeat center/cover;
+      display: flex;
+      align-items: flex-end;
+    ">
+      <div style="
+        width: 100%;
+        padding: 20px;
+        background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+        color: white;
+      ">
+        <h2 style="font-size: 20px; font-weight: bold; margin: 0;">Segundo Pilar</h2>
+        <p style="font-size: 14px; margin: 5px 0 0;">- Alimentación -</p>
+      </div>
+    </div>
+
+    <div style="
+      max-width: 600px;
+      margin: 15px auto;
+      font-size: 15px;
+      color: #222;
+      line-height: 1.6;
+      padding: 0 10px;
+    ">
+      <p>
+        Una vez ya estemos entrenando de la manera correcta, lo que hay que hacer es alimentarse
+        de la manera correcta también, ya que sin la alimentación, el músculo no tiene cómo crecer
+        después del entrenamiento, así como una planta necesita agua para crecer, el músculo necesita
+        a fuerzas comida para crecer, en especial las proteínas (huevo, pescado, leche, etc.).
+      </p>
+      <p>
+        Así que no olvides consumir proteína, 2gr por kilo de peso, por ejemplo, si pesas 54 kg,
+        consume aproximadamente 108 gr de proteína, de esta manera el músculo tendrá cómo crecer.
+        También es muy importante que tomes la suficiente agua, ya que los músculos también están
+        conformados por agua, recuerda hidratarte bien.
+      </p>
+    </div>
+
+    <hr style="border: none; border-top: 2px solid #ddd; margin: 30px auto; width: 80%;">
+
+    <div style="
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      width: 90%;
+      max-width: 400px;
+      margin: 20px auto;
+      height: 200px;
+      background: url('https://images.pexels.com/photos/1034584/pexels-photo-1034584.jpeg?_gl=1*1eve4fr*_ga*MTY1Njc0OTExMi4xNzU2OTU5ODI1*_ga_8JE65Q40S6*czE3NTY5NTk4MjUkbzEkZzEkdDE3NTY5NjAyNzEkajUwJGwwJGgw') no-repeat center/cover;
+      display: flex;
+      align-items: flex-end;
+    ">
+      <div style="
+        width: 100%;
+        padding: 20px;
+        background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+        color: white;
+      ">
+        <h2 style="font-size: 20px; font-weight: bold; margin: 0;">Tercer Pilar</h2>
+        <p style="font-size: 14px; margin: 5px 0 0;">- Descanso -</p>
+      </div>
+    </div>
+
+    <div style="
+      max-width: 600px;
+      margin: 15px auto;
+      font-size: 15px;
+      color: #222;
+      line-height: 1.6;
+      padding: 0 10px;
+    ">
+      <p>
+        El descanso es una de las razones por la cual mucha gente no obtiene sus resultados que quieren
+        y esto es debido al músculo ya que el músculo crece cuando duermes. Así que es fundamental dormir
+        7 horas diarias para que de esta manera el músculo sea capaz de crecer correctamente.
+      </p>
+    </div>
+
+    <hr style="border: none; border-top: 2px solid #ddd; margin: 30px auto; width: 80%;">
+
+    <div class="contenedor">
+      <h2>Consejo extra</h2>
+
+      <div class="consejo">
+        <img src="https://images.pexels.com/photos/841131/pexels-photo-841131.jpeg?_gl=1*amcv3v*_ga*MTY1Njc0OTExMi4xNzU2OTU5ODI1*_ga_8JE65Q40S6*czE3NTY5NTk4MjUkbzEkZzEkdDE3NTY5NTk5MTYkajQwJGwwJGgw" alt="Consejo 1">
+        <p>Se disciplinado con tu entrenamiento igual que con la dieta.</p>
+      </div>
+
+      <div class="consejo">
+        <img src="https://images.pexels.com/photos/1547248/pexels-photo-1547248.jpeg?_gl=1*or3sq*_ga*MTY1Njc0OTExMi4xNzU2OTU5ODI1*_ga_8JE65Q40S6*czE3NTY5NTk4MjUkbzEkZzEkdDE3NTY5NjAwMzgkajQ5JGwwJGgw" alt="Consejo 2">
+        <p>No te enojes si no ves resultados en poco tiempo, es un camino largo pero efectivo.</p>
+      </div>
+
+      <div class="consejo">
+        <img src="https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?_gl=1*h8xjxh*_ga*MTY1Njc0OTExMi4xNzU2OTU5ODI1*_ga_8JE65Q40S6*czE3NTY5NTk4MjUkbzEkZzEkdDE3NTY5NTk4NjUkajIwJGwwJGgw" alt="Consejo 3">
+        <p>Enfócate en tu entrenamiento, no te distraigas al entrenar.</p>
+      </div>
+
+      <div class="consejo">
+        <img src="https://images.pexels.com/photos/33681298/pexels-photo-33681298.jpeg?_gl=1*1dhs88x*_ga*MTY1Njc0OTExMi4xNzU2OTU5ODI1*_ga_8JE65Q40S6*czE3NTY5NTk4MjUkbzEkZzEkdDE3NTY5NjAwNjckajIwJGwwJGgw" alt="Consejo 4">
+        <p>Calienta antes de entrenar o podría ocurrir una lesión.</p>
+      </div>
+
+      <div class="recordatorio">
+        <p>
+          Recuerda que ningún pilar es más importante que otro, tienes que hacer los tres ya que si fallas en uno fallas en todos los demás en disciplina.
+          Recuerda no llegará de un día para otro, pero si haces las cosas de la forma correcta lo lograrás.
+        </p>
+      </div>
+
+      <div class="redes">
+        <h3>Sigue a Spiderboy en sus redes</h3>
+        <a href="https://www.tiktok.com/@spider.boy305?_t=ZS-8zR7N8AWUmG&_r=1" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok">
+        </a>
+        <a href="https://youtube.com/@spiderboy-p9e?si=wgs0G6zPWMKSL4ZC" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+        </a>
+        <a href="https://www.instagram.com/spider.boy.14?igsh=aW5vNjRqNnFlaWVn" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="details-page" id="details-page">
+    <a href="#" class="back-arrow" onclick="hideDetailsPage()">&#8592;</a>
+    <div id="details-content"></div>
+  </div>
+
+  <script>
+    const ejerciciosData = [
+      {
+        nombre: "Rutina de tríceps",
+        ejercicios: [
+          { nombre: "Flexiones esfinge", repeticiones: "4 a 10", descanso: "3 minutos" },
+          { nombre: "Copas con mochila", repeticiones: "5 a 15", descanso: "3 minutos" },
+          { nombre: "Press francés con mochila", repeticiones: "4 a 15", descanso: "3:30 minutos" }
+        ],
+        link: "triceps"
+      },
+      {
+        nombre: "Rutina de pectoral",
+        ejercicios: [
+          { nombre: "Flexiones normales", repeticiones: "4 a 10", descanso: "3:30 minutos" },
+          { nombre: "Flexiones diamante", repeticiones: "5 a 12", descanso: "3:30 minutos" },
+          { nombre: "Flexiones declinadas", repeticiones: "5 a 10", descanso: "3:30 minutos" },
+          { nombre: "Fondos", repeticiones: "5 a 10", descanso: "3:30 minutos" }
+        ],
+        link: "pectoral"
+      }
+    ];
+
+    const inputEjercicio = document.getElementById("busqueda-ejercicio");
+    const resultadosEjercicios = document.getElementById("resultados-ejercicios");
+    const contentPage = document.querySelector(".content-page");
+    const detailsPage = document.getElementById("details-page");
+    const detailsContent = document.getElementById("details-content");
+
+    // Función para mostrar los resultados del buscador
+    function mostrarResultadosBuscador() {
+      const valor = inputEjercicio.value.toLowerCase();
+      resultadosEjercicios.innerHTML = "";
+
+      if (valor) {
+        const filtrados = ejerciciosData.filter(e => e.nombre.toLowerCase().includes(valor));
+
+        filtrados.forEach(e => {
+          const regex = new RegExp(`(${valor})`, "gi");
+          const nombreResaltado = e.nombre.replace(regex, '<span class="resaltado">$1</span>');
+
+          const link = document.createElement("a");
+          link.classList.add("resultado-item");
+          link.innerHTML = `
+            <div class="resultado-texto">
+              <h3>${nombreResaltado}</h3>
+              <p>${e.ejercicios.map(ej => ej.nombre).join(', ')}</p>
+            </div>
+          `;
+          link.addEventListener("click", () => showDetailsPage(e.link));
+          resultadosEjercicios.appendChild(link);
+        });
+      }
+    }
+
+    // Event listener para el input del buscador
+    inputEjercicio.addEventListener("input", mostrarResultadosBuscador);
+
+    // Inicializar el buscador con todas las rutinas al cargar la página
+    document.addEventListener("DOMContentLoaded", mostrarResultadosBuscador);
+
+
+    function showDetailsPage(rutinaKey) {
+      const rutina = ejerciciosData.find(r => r.link === rutinaKey);
+      if (!rutina) return;
+
+      let tableHtml = `<h2>${rutina.nombre}</h2>`;
+      tableHtml += `<table class="rutina-table">
+                      <thead>
+                        <tr>
+                          <th>Ejercicio</th>
+                          <th>Repeticiones</th>
+                          <th>Tiempo de Descanso</th>
+                        </tr>
+                      </thead>
+                      <tbody>`;
+      rutina.ejercicios.forEach(ej => {
+        tableHtml += `<tr>
+                        <td>${ej.nombre}</td>
+                        <td>${ej.repeticiones}</td>
+                        <td>${ej.descanso}</td>
+                      </tr>`;
+      });
+      tableHtml += `</tbody></table>`;
+
+      contentPage.style.display = "none";
+      detailsPage.style.display = "block";
+      detailsContent.innerHTML = tableHtml;
+    }
+
+    function hideDetailsPage() {
+      detailsPage.style.display = "none";
+      contentPage.style.display = "block";
+    }
+
+    const diasSemana = ["L", "M", "X", "J", "V", "S", "D"];
+    const nombresSemana = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+    const diasContenedor = document.getElementById("dias-semana");
+    const mensajeDia = document.getElementById("mensaje-dia");
+
+    let progreso = JSON.parse(localStorage.getItem("progresoSemanal")) || [];
+    const hoy = new Date().getDay();
+    const indiceHoy = hoy === 0 ? 6 : hoy - 1;
+
+    diasSemana.forEach((dia, i) => {
+      const div = document.createElement("div");
+      div.classList.add("dia");
+      div.textContent = dia;
+
+      if (progreso.includes(i)) {
+        div.classList.add("activo");
+      }
+
+      if (i === indiceHoy && !progreso.includes(i)) {
+        progreso.push(i);
+        localStorage.setItem("progresoSemanal", JSON.stringify(progreso));
+        div.classList.add("activo");
+      }
+      diasContenedor.appendChild(div);
+    });
+
+    mensajeDia.querySelector("p").textContent = `Hoy es ${nombresSemana[indiceHoy]} 💪 ¡Sigue cumpliendo tu objetivo semanal!`;
+
+    const slides = document.querySelectorAll(".slide");
+    const puntos = document.querySelectorAll(".punto");
+    let indice = 0;
+
+    function mostrarSlide(n) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove("activo");
+        puntos[i].classList.remove("activo");
+      });
+      slides[n].classList.add("activo");
+      puntos[n].classList.add("activo");
+    }
+
+    puntos.forEach((punto, i) => {
+      punto.addEventListener("click", () => {
+        indice = i;
+        mostrarSlide(indice);
+      });
+    });
+
+    setInterval(() => {
+      indice = (indice + 1) % slides.length;
+      mostrarSlide(indice);
+    }, 2500);
+
+  </script>
+</body>
+</html>
